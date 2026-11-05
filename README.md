@@ -114,18 +114,6 @@ nn.Flatten()           # (128, 4, 4) → 128 × 4 × 4 = 2048
 1. **Dense (Linear)** — Flatten 벡터를 보고 클래스마다 **점수(logit)** 를 매깁니다. 음수도 나오고 합계도 제각각입니다.
 2. **softmax** — 점수를 **0~1 사이, 합이 1 인 확률**로 바꿉니다. 점수가 크면 확률도 큽니다. 가장 큰 확률의 클래스가 예측입니다.
 
-### Keras 와 PyTorch 의 차이 — softmax 를 어디에 두나
-
-| | Keras | PyTorch (`base.ipynb`) |
-|---|---|---|
-| 층 | `layers.Dense(10, activation="softmax")` | `nn.Linear(256, 10)` |
-| softmax | 층 안에 포함 | **모델에 넣지 않음.** `nn.CrossEntropyLoss` 가 내부에서 계산 |
-| 확률이 필요할 때 | 모델 출력 그대로 | `F.softmax(model(x), dim=1)` |
-
-> ⚠️ PyTorch 에서 모델 끝에 `nn.Softmax` 를 또 넣으면 softmax 가 **두 번** 적용됩니다. 에러는 안 나지만 학습이 잘 안 됩니다.
-
-`base.ipynb` 는 Linear 를 두 층 씁니다 (`2048 → 256 → 클래스 수`). 첫 층이 특징들을 조합하고, 마지막 층이 클래스 점수를 냅니다. 파라미터 대부분(약 85%)이 첫 Linear 층에 있다는 것도 확인해 보세요.
-
 ---
 
 ## 모양(shape) 변화 정리 — CIFAR-10 (3×32×32) 기준
