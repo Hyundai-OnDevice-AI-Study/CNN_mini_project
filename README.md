@@ -1,4 +1,4 @@
-# CNN_mini_project - 기본 구조 한눈에 보기
+# CNN 미니 프로젝트 — 기본 구조 한눈에 보기
 
 `base.ipynb` 의 기본 CNN 이 **무엇을 하는지** 층 하나씩 그림으로 설명합니다.
 전이학습 없이 처음부터 학습하는 모델이고, Google Colab + PyTorch 로 진행합니다.
